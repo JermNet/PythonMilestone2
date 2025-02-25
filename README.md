@@ -9,17 +9,25 @@ This is a project done for my self study course, in which I decided to learn Pyt
 
 # SCREENSHOTS
 ## main.py
+![image](https://github.com/user-attachments/assets/376033f7-89a2-4e09-91f4-d7b766cd4b98)
 
 ## snake.py
 
 ## shop.py
+![image](https://github.com/user-attachments/assets/8a260ebe-d063-4c79-9e32-2422f15721c7)
+![image](https://github.com/user-attachments/assets/8c2c9cd9-8a20-40b4-a33f-0207bfa5a1c6)
 
 ## score.py
+![image](https://github.com/user-attachments/assets/6aff4320-3ff7-4312-9871-c579281460c4)
 
 ## constants.py
+![image](https://github.com/user-attachments/assets/d2dab974-3d88-44b3-b3a8-c4c16a91a802)
 
 ## Shop Screen
+![image](https://github.com/user-attachments/assets/6d96fe52-5818-4be0-96db-9864a4be7387)
 
 ## Main Game
+![image](https://github.com/user-attachments/assets/9f791289-3a59-41c4-b6a0-d0a4ea2a933f)
 
 ## Game Over Screen
+![image](https://github.com/user-attachments/assets/efefbe5f-0197-427c-8167-d989c6135a27)
