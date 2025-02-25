@@ -12,6 +12,11 @@ This is a project done for my self study course, in which I decided to learn Pyt
 ![image](https://github.com/user-attachments/assets/376033f7-89a2-4e09-91f4-d7b766cd4b98)
 
 ## snake.py
+![image](https://github.com/user-attachments/assets/5b831c76-2fd2-4cc0-b19d-efefbf7dea32)
+![image](https://github.com/user-attachments/assets/18c1d608-d2ee-4fb8-bda3-650744a61059)
+![image](https://github.com/user-attachments/assets/01aa0357-fbb7-4b3f-a1f2-2f6479a4f8e2)
+![image](https://github.com/user-attachments/assets/993a25b6-3e52-48bf-bed5-5c82a16270bb)
+![image](https://github.com/user-attachments/assets/5b0a35e2-b3a0-4077-919a-1d9d1ef756fa)
 
 ## shop.py
 ![image](https://github.com/user-attachments/assets/8a260ebe-d063-4c79-9e32-2422f15721c7)
@@ -21,7 +26,7 @@ This is a project done for my self study course, in which I decided to learn Pyt
 ![image](https://github.com/user-attachments/assets/6aff4320-3ff7-4312-9871-c579281460c4)
 
 ## constants.py
-![image](https://github.com/user-attachments/assets/d2dab974-3d88-44b3-b3a8-c4c16a91a802)
+![image](https://github.com/user-attachments/assets/ef6272c8-2059-40e2-a064-ddc591055b84)
 
 ## Shop Screen
 ![image](https://github.com/user-attachments/assets/6d96fe52-5818-4be0-96db-9864a4be7387)
