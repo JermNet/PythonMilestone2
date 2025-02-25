@@ -94,14 +94,8 @@ class Snake:
             return True
         return False
 
-    def bind_direction_keys(self):
-        
-        self.screen.onkey(lambda: self.set_snake_direction("up"), "Up")
-        self.screen.onkey(lambda: self.set_snake_direction("down"), "Down")
-        self.screen.onkey(lambda: self.set_snake_direction("left"), "Left")
-        self.screen.onkey(lambda: self.set_snake_direction("right"), "Right")
-    
     def set_snake_direction(self, direction):
+        """Set the direction of the snake, making sure it can't do a 180 degree turn"""
         if direction == "up" and self.snake_direction != "down":
             self.snake_direction = "up"
         elif direction == "down" and self.snake_direction != "up":
@@ -111,15 +105,15 @@ class Snake:
         elif direction == "right" and self.snake_direction != "left":
             self.snake_direction = "right"
 
-    def game_over(self):
-        self.is_game_over = True
-        self.score_manager.save_high_score(self.score)
-        self.game_over_text.clear()
-        self.game_over_text.goto(0, 0)
-        self.game_over_text.write("GAME OVER\nPress R to Restart", align="center", font=("Arial", 24, "bold"))
-        self.screen.onkey(self.reset_game, "r")
+    def bind_direction_keys(self):
+        """Uses lambda funtions and the set snake direction method to map the arrow keys to snake directions"""
+        self.screen.onkey(lambda: self.set_snake_direction("up"), "Up")
+        self.screen.onkey(lambda: self.set_snake_direction("down"), "Down")
+        self.screen.onkey(lambda: self.set_snake_direction("left"), "Left")
+        self.screen.onkey(lambda: self.set_snake_direction("right"), "Right")
     
     def reset_game(self):
+        """Resets the game over state, score, snake, snake direction, game over text, food position and launches the shop"""
         if self.is_game_over:
             self.is_game_over = False
             self.score = 0
@@ -129,35 +123,40 @@ class Snake:
             self.food.goto(self.food_pos)
             self.game_over_text.clear()
             self.shop_system.shop()
-    
-    # def load_high_score(self):
-    #     try:
-    #         with open("high_score.txt", "r") as file:
-    #             return int(file.read())
-    #     except FileNotFoundError:
-    #         return 0
-    
-    # def save_high_score(self):
-    #     with open("high_score.txt", "w") as file:
-    #         file.write(str(self.high_score))
+
+    def game_over(self):
+        """Sets game over to true, saves high score, writes to the screen using the turtle and lets the user reset the game with 'r' with the reset game method"""
+        self.is_game_over = True
+        self.score_manager.save_high_score(self.score)
+        self.game_over_text.clear()
+        self.game_over_text.goto(0, 0)
+        self.game_over_text.write("GAME OVER\nPress R to Restart", align="center", font=("Arial", 24, "bold"))
+        self.screen.onkey(self.reset_game, "r")
     
     def game_loop(self):
+        """The main game loop, which updates the snake and the title of the window which contains the score"""
+        
+        # Make it so nothing happens here if game over is true
         if self.is_game_over:
             return
         
+        # Make the snake move by removing and redrawing it, the head being offset by the size of itself making it look as though it has move one space
         self.snake_stamper.clearstamps()
         new_head = self.snake[-1].copy()
         offsets = {"up": (0, SNAKE_SIZE), "down": (0, -SNAKE_SIZE), "left": (-SNAKE_SIZE, 0), "right": (SNAKE_SIZE, 0)}
         new_head[0] += offsets[self.snake_direction][0]
         new_head[1] += offsets[self.snake_direction][1]
         
+        # Check for collision with the snake itself or the window edges
         if new_head in self.snake or new_head[0] < -WIDTH / 2 or new_head[0] > WIDTH / 2 or new_head[1] < -HEIGHT / 2 or new_head[1] > HEIGHT / 2:
             self.game_over()
         else:
+            # Append the new head, removing the last segment if food has not been touched so the snake does not continually grow
             self.snake.append(new_head)
             if not self.food_collision():
                 self.snake.pop(0)
             
+            # Actually draw the sake with the stamper, first doing the head separate and then the rest of the snake in a loop with slicing
             self.snake_stamper.shape(self.snake_skin)
             self.snake_stamper.goto(self.snake[-1][0], self.snake[-1][1])
             self.snake_stamper.stamp()
@@ -166,7 +165,9 @@ class Snake:
                 self.snake_stamper.goto(segment[0], segment[1])
                 self.snake_stamper.stamp()
             
+            # Update the score in the title
             self.screen.title(f"Snake Game. Score: {self.score} High Score: {self.score_manager.high_score}")
             self.screen.update()
+
+            # Using the delay and this method, make it recursive, running after every delay
             turtle.ontimer(self.game_loop, DELAY)
-        
